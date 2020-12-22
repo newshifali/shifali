@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
+  <script src="./controller/controller.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="mycontroller">
+
+
+<form role="form-inline" name="userForm" action="" method="" novalidate style="border:1px solid #ccc" ng-init="fetch()">
+
+    <h3>User Form</h3>
+    <hr>
+
+    <label><b> First Name</b></label>
+    <input type="text" ng-model="name" >{{messagename}}<br><br>
+
+    <label ><b>Last Name</b></label>
+    <input type="text" ng-model="lname">{{messagelname}}<br><br>
+
+     <!-- <label ><b>phone No </b></label>
+     <input type="text" ng-model="phone">{{messagephone}}<br><br>
+      -->
+     <!-- <label ><b>emil Id</b></label>
+     <input type="text" ng-model="email"><br><br> -->
+     <div>
+<label for="email">Email:</label>
+<input type="email" name="email" ng-model="email" placeholder="Enter your email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/ " required/>
+<span ng-show="userForm.email.$error.required" ng-style="{color:'red'}">Your email is required .</span>
+<span ng-show="userForm.email.$error.pattern" ng-style="{color:'red'}">Your email should be in correct format ex abc@gmail.com .</span>
+</div>
+<!--     
+     <label ><b>phone No </b></label>
+     <input type="text" ng-model="phone">{{messagephone}}<br><br> -->
+     <label for="contact Number">Contact Number:</label>
+     <input type="text" name="contactNumber" ng-model="phone" placeholder="Enter your Contact details" ng-pattern="/^[0-9]{10,10}$/" ng-minlength="10" ng-maxlength="10" required />
+     <span ng-show="userForm.contactNumber.$error.required" ng-style="{color:'red'}">Your contact is required .</span>
+     <span ng-show="userForm.contactNumber.$error.pattern" ng-style="{color:'red'}">Mobile should be numeric</span>
+     <span ng-show="userForm.contactNumber.$error.minlength" ng-style="{color:'red'}">contact number should be minimum of 10 digits .</span>
+     <span ng-show="userForm.contactNumber.$error.maxlength" ng-style="{color:'red'}">contact number should be maximum of 10 digits .</span>
+     
+     </div>
+     
+     
+</form><br>
+<button>Cancel</button>
+<button ng-click="add()">Add</button>
+
+<br><br><br>
+
+<table style="border: solid black 1px" >
+  <tr style="border: solid black 1px" >
+    <th style="border: solid black 1px">name</th>
+    <th style="border: solid black 1px">lname</th>
+    <th style="border: solid black 1px">phone No</th>
+    <th style="border: solid black 1px">email</th>
+
+    <th style="border: solid black 1px">Action</th>
+
+
+  </tr>
+
+  <tr style="border: solid black 1px" ng-repeat="data in dataArray">
+    <td>{{data.name}}</td>
+    <td>{{data.lname}}</td>
+    <td>{{data.phoneno}}</td>
+    <td>{{data.email}}</td>
+
+    
+    <td><button ng-click="deleteuser(data._id)">Delete</button>
+      <button ng-click="edituser(data)" >Edit</button>
+      <button ng-click="updateuser(data)">update</button></td>
+
+  </tr>
+</table>
+</body>
+</html>
